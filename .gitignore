@@ -1,0 +1,17 @@
+# Entornos virtuales y dependencias
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Secretos y configuración local
+.env
+.env.*
+!.env.example
+
+# Herramientas de prueba y cobertura
+.pytest_cache/
+.coverage
+htmlcov/
