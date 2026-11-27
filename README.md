@@ -7,7 +7,7 @@ Herramienta multiplataforma de línea de órdenes para automatizar tareas repeti
 Con `uv` (recomendado):
 
 ```bash
-uv tool install git+https://github.com/tu-usuario/cli-tareas.git
+uv tool install git+https://github.com/hugosignes/CLI_Hugo.git
 ```
 
 O en local tras clonar el repositorio:
