@@ -1,0 +1,26 @@
+name: CI - Pruebas CLI tareas
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Configurar Python 3.12
+        run: uv python install 3.12
+
+      - name: Instalar dependencias
+        run: uv sync
+
+      - name: Ejecutar suite de pruebas con pytest
+        run: uv run pytest -v
