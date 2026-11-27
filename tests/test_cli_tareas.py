@@ -77,14 +77,14 @@ def test_limpiar_temporales_antiguos(tmp_path: Path) -> None:
 
 def test_detectar_duplicados(tmp_path: Path) -> None:
     (tmp_path / "original.txt").write_text("datos identicos", encoding="utf-8")
-    (tmp_path / "copia.txt").write_text("datos identicos", encoding="utf-8")
+    (tmp_path / "z_copia.txt").write_text("datos identicos", encoding="utf-8")
 
     accion = Accion.desde_dict({"nombre": "dup", "tipo": "duplicados", "eliminar": False})
     motor = Motor(Configuracion({"dup": accion}))
     inf = motor.ejecutar("dup", tmp_path)
 
     assert len(inf.operaciones) == 1
-    assert inf.operaciones[0].origen == "copia.txt"
+    assert inf.operaciones[0].origen == "z_copia.txt"
     assert inf.operaciones[0].estado == "detectado"
 
 
