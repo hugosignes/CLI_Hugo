@@ -173,3 +173,23 @@ def test_cli_codigos_salida_sin_traceback(tmp_path: Path) -> None:
     res = runner.invoke(app, ["--config", str(tmp_path / "no_existe.json"), "validar"])
     assert res.exit_code == 3
     assert "Traceback" not in res.output
+
+
+def test_proveedor_ia_formato_openai_centro(monkeypatch) -> None:
+    from tareas.ia import ProveedorIA
+
+    class RespuestaFalsa:
+        def raise_for_status(self) -> None:
+            pass
+
+        def json(self) -> dict:
+            return {"choices": [{"message": {"content": "- Resumen desde API centro"}}]}
+
+    monkeypatch.setattr("httpx.post", lambda *args, **kwargs: RespuestaFalsa())
+    ia = ProveedorIA(
+        modelo="Qwen38-DualSpark-medium",
+        url_base="https://ia.simarro/llmapi/v1",
+        api_key="clave-prueba",
+    )
+    resultado = ia.resumir_texto("Texto de prueba", "doc.txt")
+    assert "Resumen desde API centro" in resultado

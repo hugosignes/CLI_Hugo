@@ -86,3 +86,9 @@ El fichero `acciones.json` contiene un objeto raíz con una lista obligatoria `"
 ```bash
 uv run pytest -v
 ```
+
+## Configuración con la API del centro (IES Doctor Lluís Simarro)
+
+1. Copia `.env.example` a `.env` y añade tu clave en `TAREAS_API_KEY`.
+2. Descarga el certificado del centro (`ca-simarro.crt`) en la raíz del proyecto o en `~/.config/opencode/ca-simarro.crt`.
+3. Ejecuta cualquier acción con IA (`resumir-documentos` o `renombrar-ia`).
