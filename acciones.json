@@ -1,0 +1,56 @@
+{
+  "acciones": [
+    {
+      "nombre": "limpiar-nombres",
+      "descripcion": "Elimina espacios y tildes de los nombres de archivo",
+      "tipo": "renombrar_limpio"
+    },
+    {
+      "nombre": "ordenar-descargas",
+      "descripcion": "Clasifica ficheros por extensión en subcarpetas (PDF, Imagenes, Comprimidos, Documentos, Otros)",
+      "tipo": "ordenar",
+      "categorias": {
+        "PDF": [".pdf"],
+        "Imagenes": [".jpg", ".jpeg", ".png", ".webp", ".gif"],
+        "Comprimidos": [".zip", ".tar", ".gz", ".rar", ".7z"],
+        "Documentos": [".docx", ".xlsx", ".md", ".txt"]
+      }
+    },
+    {
+      "nombre": "limpiar-temporales",
+      "descripcion": "Elimina ficheros temporales (.tmp, .bak, .log, .old) con más de 30 días",
+      "tipo": "limpiar_temporales",
+      "dias_antiguedad": 30,
+      "extensiones": [".tmp", ".bak", ".log", ".old"]
+    },
+    {
+      "nombre": "detectar-duplicados",
+      "descripcion": "Detecta archivos duplicados por hash SHA-256 sin borrarlos automáticamente",
+      "tipo": "duplicados",
+      "eliminar": false
+    },
+    {
+      "nombre": "resumir-documentos",
+      "descripcion": "Resume ficheros .txt y .md usando IA local (Ollama)",
+      "tipo": "resumir_ia",
+      "extensiones": [".txt", ".md"]
+    },
+    {
+      "nombre": "renombrar-ia",
+      "descripcion": "Propone nombres descriptivos leyendo el contenido de documentos con IA",
+      "tipo": "renombrar_ia",
+      "extensiones": [".txt", ".md"]
+    },
+    {
+      "nombre": "limpieza-completa",
+      "descripcion": "Flujo combinado: normaliza nombres, detecta duplicados, resume textos con IA y ordena",
+      "tipo": "encadenar",
+      "pasos": [
+        "limpiar-nombres",
+        "detectar-duplicados",
+        "resumir-documentos",
+        "ordenar-descargas"
+      ]
+    }
+  ]
+}
